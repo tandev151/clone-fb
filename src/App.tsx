@@ -1,25 +1,24 @@
-import React from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { AuthContainer } from './containers/Auth';
+import { ThemeContextType } from './actions/type';
+
+const ThemeContext = createContext<ThemeContextType>('light');
 
 function App() {
+  const [theme, setTheme] = useState<ThemeContextType>('light');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={theme}>
+      <div className='App'>
+        {/* <AuthContainer {...{ theme: ThemeContext }}></AuthContainer> */}
+        {theme}
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+          Switch
+        </button>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
