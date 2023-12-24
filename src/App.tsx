@@ -1,22 +1,22 @@
-import React, { createContext, useState, useContext } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
 import { AuthContainer } from './containers/Auth';
-import { ThemeContextType } from './actions/type';
 
-const ThemeContext = createContext<ThemeContextType>('light');
+import { ThemeContext } from './context';
 
 function App() {
-  const [theme, setTheme] = useState<ThemeContextType>('light');
-
+  const [theme, setTheme] = useState<string>('light');
+  console.log({ theme });
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        setTheme
+      }}>
       <div className='App'>
-        {/* <AuthContainer {...{ theme: ThemeContext }}></AuthContainer> */}
+        <AuthContainer></AuthContainer>
         {theme}
-        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-          Switch
-        </button>
       </div>
     </ThemeContext.Provider>
   );

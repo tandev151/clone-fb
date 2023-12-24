@@ -1,7 +1,19 @@
 import React, { useContext } from 'react';
-import { ThemeContextType } from '../../actions/type';
-export const AuthContainer = (props: unknown) => {
-  console.log({ props });
-  //   const theme = useContext(props?.ThemeContext);
-  return <div>AuthContainer</div>;
+import { useThemeContext } from '../../context';
+
+export const AuthContainer = () => {
+  const { theme, setTheme } = useThemeContext();
+  console.log({ theme });
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          console.log('Call');
+          setTheme('abc');
+        }}>
+        Switch
+      </button>
+    </div>
+  );
 };
