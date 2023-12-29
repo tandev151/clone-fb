@@ -7,14 +7,14 @@ import { ThemeContext } from './context';
 
 function App() {
   const [theme, setTheme] = useState<string>('light');
-  console.log({ theme });
+
   return (
     <ThemeContext.Provider
       value={{
         theme,
         setTheme
       }}>
-      <div className='App'>
+      <div className={`global-app ${theme}`}>
         <AuthContainer></AuthContainer>
         {theme}
       </div>

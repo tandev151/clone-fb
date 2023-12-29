@@ -9,8 +9,7 @@ export const AuthContainer = () => {
     <div>
       <button
         onClick={() => {
-          console.log('Call');
-          setTheme('abc');
+          setTheme(theme === 'light' ? 'dark' : 'light');
         }}>
         Switch
       </button>
